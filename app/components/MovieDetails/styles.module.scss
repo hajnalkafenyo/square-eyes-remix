@@ -1,0 +1,17 @@
+.moviePoster{
+    width: 350px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.movieDetails{
+    display: flex;
+    flex-direction: row;
+}
+
+.movieDescription{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}

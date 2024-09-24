@@ -1,0 +1,28 @@
+.button{
+    
+    border-radius: 4px;
+    text-transform: uppercase;
+    line-height: 16px;
+    display: inline;
+    font-size: 14px;
+    padding: 5px;
+    border: 2px;
+    font-family: 'Open Sans';
+    cursor: pointer;
+
+    &:disabled{
+        background-color: #D3D3D3;
+        color: #A9A9A9;
+        cursor: not-allowed;
+    }
+}
+
+.filledButton{
+    background-color: #FA8F21;
+    color: #0A0B09;
+}
+.outlinedButton{
+    color: #FA8F21;
+    background-color: transparent;
+    border: 2px solid #FA8F21;
+}

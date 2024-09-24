@@ -1,48 +1,48 @@
-import type { MetaFunction } from "@remix-run/node";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+import { useMovies } from "~/api/useMovies";
+import { Card } from "~/components/card/card";
+import { ErrorMessage } from "~/components/ErrorMessage/ErrorMessage";
+import { Loading } from "~/components/Loading/Loading";
+import { Hero } from "~/components/Hero/Hero";
+import IndexHero from "../assets/home-banner.png";
+import { CardContainer } from "~/components/CardContainer/CardContainer";
+import { Button } from "~/components/Button/Button";
+import { useNavigate } from "@remix-run/react";
+import { useLocalStorage } from "~/hooks/useLocalStorage";
 
 export default function Index() {
+  const { data, error, isLoading } = useMovies();
+  const navigate = useNavigate();
+
+  const { data: counter, setData } = useLocalStorage("counter", 0);
+
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      <Hero src={IndexHero} alt="A young couple cuddling in front of a movie" />
+      <h2 className="">Cica</h2>
+      {isLoading && <Loading />}
+      {error && <ErrorMessage />}
+      {data && (
+        <div>
+          <CardContainer>
+            {data.map((movie) => (
+              <Card movie={movie} key={movie.id} />
+            ))}
+          </CardContainer>
+          <Button
+            text="Show all movies..."
+            onClick={() => {
+              navigate("/movies");
+            }}
+          />
+        </div>
+      )}
+      <pre>Current number: {counter}</pre>
+      <Button
+        onClick={() => {
+          setData(counter + 1);
+        }}
+        text="+1"
+      />
     </div>
   );
 }

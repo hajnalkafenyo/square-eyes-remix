@@ -1,0 +1,32 @@
+@import "/app/variables.scss";
+
+.cartItem {
+  overflow: hidden;
+  border: 1px solid #000000;
+  background-color: #151515;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  width: 100%;
+  margin: 10px 0;
+  @media only screen and (min-width: $bp-md) {
+    
+    @media only screen and (min-width: $bp-lg) {
+      
+    }
+  }
+}
+
+.moviePoster{
+
+    height: 100%;
+    object-fit: contain;
+    
+  }
+
+  .movieText{
+    flex-grow: 1;
+    margin: 8px; 
+  }
+
